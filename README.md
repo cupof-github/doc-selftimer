@@ -1,4 +1,4 @@
-# self-timer.js <small>1.0.0</small>
+# self-timer.js <small>1.1.0</small>
 
 ![logo](_assets/img/logo.png)
 
@@ -481,6 +481,59 @@ st.on(true)
       .catch(function(){
         // callback
       });
+```
+
+## DatesContain( dates, task )
+
+> `DatesContain` method return callback when you want to run date.
+
+> It is similar to `Annual` method, but this method has supported `multiple dates`.
+
+- group : `.on()`
+- argument : `dates` [ Array ] *yyyy-mm-dd* , `task` [ Function ]
+- return : `Function` || `Bool`
+- NOTE: **available since v1.1.0**
+
+** callback **
+
+```javascript
+/* selftimer.js */
+
+// initialize
+var st = new SelfTimer(new Date('2017-03-01'));
+
+// DatesContain
+st.on().DatesContain(['2017-03-01', '2017-04-02'], function() {
+  console.log(" run on 'March 1, 2017' and 'April 2', 2017");
+});
+```
+
+** promise **
+
+``` javascript
+/* selftimer-promise-plyfill.js || selftimer-promise.js */
+
+// initialize
+var st = new SelfTimer(new Date());
+
+// DatesContain
+st.on()
+    .DatesContain(['2017-03-01', '2017-04-02'])
+      .then(function() {
+          console.log("この処理は '2017年3月1日' と '2017年4月2日' に実行されます ");
+        });
+
+// use 'catch' method
+st.on()
+   .DatesContain(['2017-03-01', '2017-04-02'])
+    .then(function() {
+      console.log("この処理は '2017年3月1日' と '2017年4月2日' に実行されます ");
+      })
+    .catch(function(){
+      // callback
+    });
+
+
 ```
 
 ### Between( from, to, task )

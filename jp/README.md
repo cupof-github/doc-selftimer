@@ -1,4 +1,4 @@
-# self-timer.js <small>1.0.0</small>
+# self-timer.js <small>1.1.0</small>
 
 ![logo](../_assets/img/logo.png)
 
@@ -501,9 +501,62 @@ st.on(true)
       });
 ```
 
+## DatesContain( dates, task )
+
+> `DatesContain`は`指定した日付`が含まれている実行するメソッドです。
+
+> `Annual`と違い、`複数の日`を指定できます。
+
+- group : `.on()`
+- argument : `dates` [ Array ] *yyyy-mm-dd* , `task` [ Function ]
+- return : `Function` || `Bool`
+- NOTE: **v1.1.0から追加**
+
+** callback **
+
+```javascript
+/* selftimer.js */
+
+// initialize
+var st = new SelfTimer(new Date('2017-03-01'));
+
+// DatesContain
+st.on().DatesContain(['2017-03-01', '2017-04-02'], function() {
+  console.log("この処理は '2017年3月1日' と '2017年4月2日' に実行されます ");
+});
+```
+
+** promise **
+
+``` javascript
+/* selftimer-promise-plyfill.js || selftimer-promise.js */
+
+// initialize
+var st = new SelfTimer(new Date());
+
+// DatesContain
+st.on()
+    .DatesContain(['2017-03-01', '2017-04-02'])
+      .then(function() {
+          console.log("この処理は '2017年3月1日' と '2017年4月2日' に実行されます ");
+        });
+
+// use 'catch' method
+st.on()
+   .DatesContain(['2017-03-01', '2017-04-02'])
+    .then(function() {
+      console.log("この処理は '2017年3月1日' と '2017年4月2日' に実行されます ");
+      })
+    .catch(function(){
+      // callback
+    });
+
+
+```
+
 ### Between( from, to, task )
 
-> `Between` は`指定した開始時間 ~ 終了時間`までの間に処理を実行するメソッドです。
+> `Between`は`指定した開始時間 ~ 終了時間`までの間に処理を実行するメソッドです。
 
 - group : `.at()`
 - argument : `from` [ String ] *hh:mm* ( am || pm ), `to` [ String ] *hh:mm* ( am || pm ), `task` [ Function ]

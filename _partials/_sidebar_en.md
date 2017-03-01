@@ -9,6 +9,7 @@
   - [Selects( daysOfTheWeek, task )](/#selects-daysoftheweek-task-)
   - [Annual( date, task )](/#annual-date-task-)
   - [DatesBetween( from, to, task )](/#datesbetween-from-to-task-)
+  - [DatesContain( dates, task )](/#datescontain-dates-task-)
 
 - .at()
 
