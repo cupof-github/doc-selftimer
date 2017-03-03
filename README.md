@@ -1110,8 +1110,8 @@ st.in().Year(2016, function() {
   console.log("this method run, during years of 2016!");
 });
 
-// in() method is supported method chaining * Only callback
-st.in()
+// in() method is supported method chaining * if attached 'true' inside in() (Only callback)
+st.in(true)
   .Year(2016)
   .MonthSelects([7, 8], function(){
       console.log("this method run, in July and August, 2016!");

@@ -1138,8 +1138,8 @@ st.in().Year(2016, function() {
   console.log("この処理は '2016年' に実行されます");
 });
 
-// in() メソッドは メソッドチェーンに対応しています * callbackのみ
-st.in()
+// in() メソッドは メソッドチェーンに対応しています * in()メソッド内に'true'コンディションが必用です (callbackのみ)
+st.in(true)
   .Year(2016)
   .MonthSelects([7, 8], function(){
       console.log("この処理は '2016年 7月と8月' に実行されます");
