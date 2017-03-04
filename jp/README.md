@@ -1360,7 +1360,7 @@ st.on(true)
 
 ## Language( Language, task ) * Web-Browser only
 
-> `Language` メソッド は指定した言語とブラウザの`user-browser-langage`がマッチした時に処理を実行します * WEBブラウザのみ
+> `Language` メソッド は指定した言語とブラウザの`user-browser-language`がマッチした時に処理を実行します * WEBブラウザのみ
 
 > ( * exp: 'en-au', 'en-us', 'fr-ch', 'fr-ca' ... etc )
 

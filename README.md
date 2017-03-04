@@ -1328,7 +1328,7 @@ st.on(true)
 
 ## Language( Language, task ) * Web-Browser only
 
-> `Language` method return callback, **when matching user-browser-langage to language-string in argument**. ( * exp: 'en-au', 'en-us', 'fr-ch', 'fr-ca' ... etc )
+> `Language` method return callback, **when matching user-browser-language to language-string in argument**. ( * exp: 'en-au', 'en-us', 'fr-ch', 'fr-ca' ... etc )
 
 [Ref: Language-code-reference (Microsoft)](https://msdn.microsoft.com/en-us/library/ms533052?v=vs.85.aspx)
 
