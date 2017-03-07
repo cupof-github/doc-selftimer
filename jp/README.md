@@ -753,6 +753,7 @@ st.at(true)
 - group : `.at()`
 - argument : `from` [ Integer ], `to` [ Integer ] ,`task` [ Function ]
 - return : `Function` || `Bool`
+- NOTE: **v1.2.0から追加**
 
 **callback**
 ```javascript

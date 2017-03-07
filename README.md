@@ -800,6 +800,7 @@ st.on().Weekdays(function() {
 - group : `.at()`
 - argument : `hours` [ Array ] ( 0 - 23 ) ,`task` [ Function ]
 - return : `Function` || `Bool`
+- NOTE: **available since v1.2.0**
 
 **callback**
 ```javascript
