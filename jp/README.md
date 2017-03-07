@@ -1,4 +1,4 @@
-# self-timer.js <small>1.1.0</small>
+# self-timer.js <small>1.2.0</small>
 
 ![logo](../_assets/img/logo.png)
 
@@ -812,6 +812,58 @@ st.on().Weekdays(function() {
 
 });
 ```
+
+## HourSelects( hours, task )
+
+> `HourSelects` は 指定した`時間 (時ベース *複数可)`に実行するメソッドです。
+
+> 例: 13時の間、15時の間など
+
+- group : `.at()`
+- argument : `hours` [ Array ] ( 0 - 23 ) ,`task` [ Function ]
+- return : `Function` || `Bool`
+
+**callback**
+```javascript
+/* selftimer.js */
+
+// initialize
+var st = new SelfTimer(new Date());
+
+// this method to run 1:00 ~ 1:59 pm AND 3:00 ~ 3:59 pm
+st.at().HourSelects([13, 15], function() {
+  // callback
+  console.log("この処理は '13:00 ~ 13:59、15:00 ~ 15:59' の時間に実行されます");
+});
+```
+
+**promise**
+```javascript
+/* selftimer-promise-plyfill.js || selftimer-promise.js */
+
+// initialize
+var st = new SelfTimer(new Date());
+
+// HourSelects()
+st.at()
+    .HourSelects([13, 15]);
+      .then(function() {
+        // callback
+        console.log("この処理は '13:00 ~ 13:59、15:00 ~ 15:59' の時間に実行されます");
+      });
+
+// use 'catch' method
+st.at(true)
+    .HourSelects([13, 15]);
+      .then(function() {
+          // callback
+          console.log("この処理は '13:00 ~ 13:59、15:00 ~ 15:59' の時間に実行されます");
+        })
+      .catch(function(){
+        // callback
+      });
+```
+
 
 ## Day( Day, task )
 

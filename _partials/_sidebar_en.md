@@ -17,6 +17,7 @@
   - [Unless( from, to, task )](/#unless-from-to-task-)
   - [Hour( hour, task )](/#hour-hour-task-)
   - [HoursBetween( from, to, task )](/#hoursbetween-from-to-task-)
+  - [HourSelects( hours, task )](/#hourselects-hours-task-)
 
 - .in()
 

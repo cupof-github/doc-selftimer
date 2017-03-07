@@ -1,4 +1,4 @@
-# self-timer.js <small>1.1.0</small>
+# self-timer.js <small>1.2.0</small>
 
 ![logo](_assets/img/logo.png)
 
@@ -789,6 +789,57 @@ st.on().Weekdays(function() {
   });
 
 });
+```
+
+## HourSelects( hours, task )
+
+> `HourSelects` method return callback, **when mataching an hour your selected.**
+
+> *while 1pm, 3pm and so.
+
+- group : `.at()`
+- argument : `hours` [ Array ] ( 0 - 23 ) ,`task` [ Function ]
+- return : `Function` || `Bool`
+
+**callback**
+```javascript
+/* selftimer.js */
+
+// initialize
+var st = new SelfTimer(new Date());
+
+// this method to run 1:00 ~ 1:59 pm AND 3:00 ~ 3:59 pm
+st.at().HourSelects([13, 15], function() {
+  // callback
+  console.log("this method to run, while 1 pm and 3 pm");
+});
+```
+
+**promise**
+```javascript
+/* selftimer-promise-plyfill.js || selftimer-promise.js */
+
+// initialize
+var st = new SelfTimer(new Date());
+
+// HourSelects()
+st.at()
+    .HourSelects([13, 15]);
+      .then(function() {
+        // callback
+        console.log("this method to run, while 1 pm and 3 pm");
+      });
+
+// use 'catch' method
+st.at(true)
+    .HourSelects([13, 15]);
+      .then(function() {
+          // callback
+          console.log("this method to run, while 1 pm and 3 pm");
+        })
+      .catch(function(){
+        // callback
+      });
 ```
 
 ## Day( Day, task )
