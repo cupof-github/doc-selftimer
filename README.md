@@ -1,4 +1,4 @@
-# self-timer.js <small>1.2.0</small>
+# self-timer.js <small>1.3.0</small>
 
 ![logo](_assets/img/logo.png)
 
@@ -1494,4 +1494,71 @@ st.is(true)
       .catch(function(){
         // callback
       });
+```
+
+## After( type, num, task)
+
+> `After` method return callback, after a time `( second or minute )` you specified.
+
+- group : `.timer()`
+- argument : `type` [ String ], `num` [ Integer ], `task` [ Function || Object ]
+- return : `Function`
+- NOTE: **added since v1.3.0**
+
+> **available formats for a `type` of argument**
+
+> **second** : `s`, `sec`, `second`, `seconds`
+
+> **minute** : `m`, `min`, `minute`, `minutes`
+
+**callback**
+```javascript
+/* selftimer.js */
+
+// initialize
+var st = new SelfTimer(new Date());
+
+// after 3 seconds
+st.timer()
+  .After("sec", 3, function() {
+    console.log("run, after 3 seconds");
+  });
+
+// case of including immediate function
+st.timer()
+  .After("min", 2, {
+    before: function() {
+      console.log("run immediately");
+    },
+    after: function() {
+      console.log("run, after 2 minutes");
+    }
+  });
+
+```
+
+**promise**
+```javascript
+/* selftimer-promise-plyfill.js || selftimer-promise.js */
+
+// initialize
+var st = new SelfTimer(new Date());
+
+// after 3 seconds
+st.timer()
+  .After("sec", 3)
+    .then(function() {
+      console.log("run, after 3 seconds");
+    });
+
+// case of including immediate function
+st.timer()
+  .After("min", 2, {
+    before: function() {
+      console.log("run immediately");
+    }
+  })
+  .then(function() {
+    console.log("run, after 2 minutes");
+  });
 ```

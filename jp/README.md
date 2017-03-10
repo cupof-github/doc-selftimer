@@ -1,4 +1,4 @@
-# self-timer.js <small>1.2.0</small>
+# self-timer.js <small>1.3.0</small>
 
 ![logo](../_assets/img/logo.png)
 
@@ -1191,7 +1191,9 @@ st.in().Year(2016, function() {
   console.log("この処理は '2016年' に実行されます");
 });
 
-// in() メソッドは メソッドチェーンに対応しています * in()メソッド内に'true'コンディションが必用です (callbackのみ)
+/* in() メソッドは メソッドチェーンに対応しています
+ *  **in()メソッド内に'true'コンディションが必用です (callbackのみ)
+ */
 st.in(true)
   .Year(2016)
   .MonthSelects([7, 8], function(){
@@ -1529,4 +1531,71 @@ st.is(true)
       .catch(function(){
         // callback
       });
+```
+
+## After( type, num, task)
+
+> `After` メソッドは`指定した'○秒' or '○分' 後`に処理を実行します
+
+- group : `.timer()`
+- argument : `type` [ String ], `num` [ Integer ], `task` [ Function || Object ]
+- return : `Function`
+- NOTE: **v1.3.0から追加**
+
+> **利用可能 な `type` フォーマット **
+
+> **秒** : `s`, `sec`, `second`, `seconds`
+
+> **分** : `m`, `min`, `minute`, `minutes`
+
+**callback**
+```javascript
+/* selftimer.js */
+
+// initialize
+var st = new SelfTimer(new Date());
+
+// 3秒後に実行
+st.timer()
+  .After("sec", 3, function() {
+    console.log("この処理は 3秒後に 実行されます");
+  });
+
+// 即時関数を含める場合 * 1分後に実行
+st.timer()
+  .After("min", 1, {
+    before: function() {
+      console.log("この処理は すぐに 実行されます");
+    },
+    after: function() {
+      console.log("この処理は 1分後に 実行されます");
+    }
+  });
+
+```
+
+**promise**
+```javascript
+/* selftimer-promise-plyfill.js || selftimer-promise.js */
+
+// initialize
+var st = new SelfTimer(new Date());
+
+// 3秒後に実行
+st.timer()
+  .After("sec", 3)
+    .then(function() {
+      console.log("この処理は 3秒後に 実行されます");
+    });
+
+// 即時関数を含める場合 * 1分後に実行
+st.timer()
+  .After("min", 1, {
+    before: function() {
+      console.log("この処理は すぐに 実行されます");
+    }
+  })
+  .then(function() {
+    console.log("この処理は 1分後に 実行されます");
+  });
 ```

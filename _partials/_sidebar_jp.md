@@ -34,3 +34,7 @@
   - [False( condition, task )](/#false-condition-task-)
   - [Language( language, task )](/#language-language-task-web-browser-only)
   - [Lang( language, task )](/#lang-language-task-web-browser-only)
+
+- .timer()
+
+ - [After( type, num, task)](/#after-type-num-task)
