@@ -1,4 +1,4 @@
-# self-timer.js <small>1.3.0</small>
+# self-timer.js <small>1.4.4</small>
 
 ![logo](_assets/img/logo.png)
 
@@ -1438,8 +1438,12 @@ st.is(true)
 
 ## Lang( language, task ) * Web-Browser only
 
-> `Lang` method return callback, **when matching user-browser-langage to language-string in argument**. ( * exp: 'en', 'fr', 'de', 'zh', 'ja')
-This is similar method to `Language`. but, this is **sliced string to two characters** (* 'en-us' -> 'en' || 'fr-ch' -> 'fr'　).
+> `Lang` method return callback, **when matching user-browser-langage to language-string in argument**.
+
+> ( * exp: 'en', 'fr', 'de', 'zh', 'ja')
+
+
+> This is similar method to `Language`. but, this is **sliced string to two characters** (* 'en-us' -> 'en' || 'fr-ch' -> 'fr'　).
 
 [Ref: Language-code-reference (Microsoft)](https://msdn.microsoft.com/en-us/library/ms533052?v=vs.85.aspx)
 
@@ -1494,6 +1498,132 @@ st.is(true)
       .catch(function(){
         // callback
       });
+```
+
+## LanguageSelects( languages, task ) * Web-Browser only
+
+> `LanguageSelects` method return callback, when matching user-browser-language to language-string in argument. ( * enable multiple languages )
+
+> ( * exp: 'en-au', 'en-us', 'fr-ch', 'fr-ca' ... etc )
+
+> *available `LanguageExcepts` method. it's completely oppsite process to `LanguageSelects`
+
+[Ref: Language-code-reference (Microsoft)](https://msdn.microsoft.com/en-us/library/ms533052?v=vs.85.aspx)
+
+
+- group : `.is()`
+- argument : `languages` [ Array ], `task` [ Function ]
+- return : `Function | Bool`
+- NOTE: **added since v1.4.0**
+
+**callback**
+```javascript
+/* selftimer.js */
+var st = new SelfTimer(new Date());
+
+// LanguageSelects()
+st.is()
+  .LanguageSelects(['en-us', 'en-ca'], function() {
+    // callback
+    console.log("run, if 'en-us or en-ca' in user-browser-language ");
+  });
+
+// non-callback
+if( st.is().LanguageSelects(['en-us', 'en-ca']) )
+{
+  // callback
+  console.log("run, if 'en-us or en-ca' in user-browser-language ");
+
+}
+```
+
+**promise**
+```javascript
+/* selftimer-promise-plyfill.js || selftimer-promise.js */
+
+var st = new SelfTimer(new Date());
+
+// LanguageSelects()
+st.is()
+  .LanguageSelects(['en-us', 'en-ca'])
+    .then(function() {
+      // callback
+      console.log("run, if 'en-us or en-ca' in user-browser-language ");
+    });
+
+// with catch method
+st.is(true)
+  .LanguageSelects(['en-us', 'en-ca'])
+    .then(function() {
+      // resolve method
+      console.log("run, if 'en-us or en-ca' in user-browser-language ");
+    })
+    .catch(function() {
+      // reject method
+      console.log("run, if not 'en-us or en-ca' in user-browser-language ");
+    })
+```
+
+## LangSelects( lang, task ) * Web-Browser only
+
+> `LangSelects` method return callback, when matching user-browser-langage to language-string in argument. ( exp: 'en', 'fr', 'de', 'zh', 'ja')
+
+> This is similar method to `LanguageSelects`. but, this is sliced string to two characters ( 'en-us' -> 'en' || 'fr-ch' -> 'fr'　).
+
+> *available `LangExcepts` method. it's completely oppsite process to `LangSelects`
+
+[Ref: Ref: Language-code-reference (Microsoft)](https://msdn.microsoft.com/en-us/library/ms533052?v=vs.85.aspx)
+
+- group : `.is()`
+- argument : `lang` [ Array ], `task` [ Function ]
+- return : `Function`
+- NOTE: **added since v1.4.0**
+
+**callback**
+```javascript
+/* selftimer.js */
+
+var st = new SelfTimer();
+
+// LangSelects()
+st.is()
+  .LangSelects(['en', 'fr', 'es'], function() {
+    // callback
+    console.log("run if user-browser-language is `english or french or español`");
+  });
+
+// with non-callback
+if ( st.is().LangSelects(['en', 'fr', 'es']) ) {
+    // callback
+    console.log("run if user-browser-language is `english or french or español`");
+}
+```
+
+**promise**
+```javascript
+/* selftimer-promise-plyfill.js || selftimer-promise.js */
+
+var st = new SelfTimer(new Date());
+
+st.is()
+  .LangSelects(['en', 'fr', 'es'])
+    .then(function(){
+      // resolve
+      console.log("run if user-browser-language is `english or french or español`");
+    });
+
+// use catch method
+st.is(true)
+  LangSelects(['en', 'fr', 'es'])
+    .then(function(){
+      // resolve
+    console.log("run if user-browser-language is `english or french or español`");
+    })
+    .catch(function(){
+      // reject
+      console.log("run if not user-browser-language is `english or french or español`");
+    });
+
 ```
 
 ## After( type, num, task)
