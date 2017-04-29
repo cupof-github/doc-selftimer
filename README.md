@@ -1,4 +1,4 @@
-# self-timer.js <small>1.4.4</small>
+# self-timer.js <small>1.4.6</small>
 
 ![logo](_assets/img/logo.png)
 
