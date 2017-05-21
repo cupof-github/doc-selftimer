@@ -18,6 +18,11 @@ self-timer.jsを使うと、`"月曜日 〜 金曜日の8:00 〜 17:00に指定�
 npm install self-timer --save
 ```
 
+```bash
+# yarn
+yarn add self-timer
+```
+
 ```html
 CDN
 

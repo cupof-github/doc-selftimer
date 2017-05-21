@@ -16,6 +16,11 @@ Date based callback runner library for Javascript
 npm install self-timer --save
 ```
 
+```bash
+# yarn
+yarn add self-timer
+```
+
 ```html
 <!-- cdn  -->
 
