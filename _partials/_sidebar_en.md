@@ -36,6 +36,7 @@
   - [Lang( language, task )](/#lang-language-task-web-browser-only)
   - [LanguageSelects( languages, task ) ](/#languageselects-languages-task-web-browser-only)
   - [LangSelects( lang, task )](/#langselects-lang-task-web-browser-only)
+  - [Mobile ( task )](/#mobile-task-web-browser-only)
 
 
 - .timer()

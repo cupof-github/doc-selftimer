@@ -1,4 +1,4 @@
-# self-timer.js <small>1.4.6</small>
+# self-timer.js <small>1.5.0</small>
 
 ![logo](_assets/img/logo.png)
 
@@ -1609,7 +1609,7 @@ if ( st.is().LangSelects(['en', 'fr', 'es']) ) {
 /* selftimer-promise-plyfill.js || selftimer-promise.js */
 
 var st = new SelfTimer(new Date());
-
+// LangSelects()
 st.is()
   .LangSelects(['en', 'fr', 'es'])
     .then(function(){
@@ -1630,6 +1630,60 @@ st.is(true)
     });
 
 ```
+
+## Mobile( task ) * Web-Browser only
+
+> `Mobile` method return callback, when accessed `from mobile`.
+
+Currently supported : `iPhone`, `iPod`, `iPod touch`, `Android`, `Windows Phone`
+
+!> `Mobile` method is parsing useragent string
+
+- group : `.is()`
+- argument : `task` [ Function ]
+- return : `Function`
+- NOTE: **added since v1.5.0**
+
+**callback**
+```javascript
+/* selftimer.js */
+var st = new SelfTimer(new Date())
+// Mobile()
+st.is()
+  .Mobile(function() {
+    console.log("run if accessed from mobile");
+    });
+  });
+
+// non-callback
+if (st.is().Mobile()) {
+  console.log("run if accessed from mobile");
+}
+```
+
+**promise**
+```javascript
+/* selftimer-promise-plyfill.js || selftimer-promise.js */
+
+var st = new SelfTimer(new Date());
+// Mobile()
+st.is()
+  .Mobile()
+  .then(function(){
+    console.log("run if accessed from mobile");
+  });
+
+// use catch method
+st.is(true)
+  .Mobile()
+  .then(function(){
+    console.log("run if accessed from mobile");
+  })
+  .catch(fuctnion(){
+    console.log("run if not accessed from mobile");
+  })
+```
+
 
 ## After( type, num, task)
 
