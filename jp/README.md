@@ -1667,7 +1667,7 @@ st.is(true)
 
 > `Mobile` メソッドは モバイル端末からのアクセス時に動作するメソッドです.
 
-判断するモバイル端末 : `iPhone`, `iPod`, `iPod touch`, `Android`, `Windows Phone`
+判断するモバイル端末 : `iPhone`, `iPad`, `iPod touch`, `Android`, `Windows Phone`
 
 !> `Mobile` はユーザーエージェントの文字列を解析して判別しています
 

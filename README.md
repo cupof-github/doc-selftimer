@@ -1635,7 +1635,7 @@ st.is(true)
 
 > `Mobile` method return callback, when accessed `from mobile`.
 
-Currently supported : `iPhone`, `iPod`, `iPod touch`, `Android`, `Windows Phone`
+Currently supported : `iPhone`, `iPad`, `iPod touch`, `Android`, `Windows Phone`
 
 !> `Mobile` method is parsing useragent string
 
