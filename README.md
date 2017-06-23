@@ -1,4 +1,4 @@
-# self-timer.js <small>1.5.2</small>
+# self-timer.js <small>1.5.3</small>
 
 ![logo](_assets/img/logo.png)
 
@@ -525,14 +525,14 @@ var st = new SelfTimer(new Date());
 st.on()
     .DatesContain(['2017-03-01', '2017-04-02'])
       .then(function() {
-          console.log("この処理は '2017年3月1日' と '2017年4月2日' に実行されます ");
+          console.log(" run on 'March 1, 2017' and 'April 2', 2017 ");
         });
 
 // use 'catch' method
 st.on()
    .DatesContain(['2017-03-01', '2017-04-02'])
     .then(function() {
-      console.log("この処理は '2017年3月1日' と '2017年4月2日' に実行されます ");
+      console.log(" run on 'March 1, 2017' and 'April 2', 2017 ");
       })
     .catch(function(){
       // callback
