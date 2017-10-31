@@ -42,3 +42,8 @@
 - .timer()
 
   - [After( type, num, task)](/#after-type-num-task)
+
+- .check()
+
+  - [With( val )](/#with-val-)
+  - [Done( task )](/#done-task-)

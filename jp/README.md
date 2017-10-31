@@ -1,4 +1,4 @@
-# self-timer.js <small>1.5.3</small>
+# self-timer.js <small>1.6.1</small>
 
 ![logo](../_assets/img/logo.png)
 
@@ -1781,4 +1781,92 @@ st.timer()
   .then(function() {
     console.log("この処理は 1分後に 実行されます");
   });
+```
+
+## With( val )
+
+> `With` メソッドは `引数内の値がtrueかどうか` 確認します
+
+!>  `callback` バージョンのみ使用できます。 **promise** では利用できません
+
+- group : `.check()`
+- argument : `val` [ Bool ]
+- return : `this`
+- NOTE: **v1.6.0から追加**
+
+
+## Done( task )
+
+> `Done` メソッドは With メソッドの値を判定し、結果を返します
+
+!>  `callback` バージョンのみ使用できます。 **promise** では利用できません
+
+- group : `.check()`
+- argument : `callback` [ Function ]
+- return : `Function` || `Bool`
+- NOTE: **v1.6.0から追加**
+
+** basic example **
+```js
+var st = new SelfTimer(new Date());
+
+// With ~ Done を使って平日時の判定
+st.check()
+  .With(st.on.WeekDay()) // 平日かどうかチェック
+  .Done(); /// true || false
+
+// コールバックを通す例
+st.check()
+  .With(! st.on.WeekDay()) // 平日ではないかチェック
+  .Done(function() {
+    console.log('本日は平日ではありません')
+  });
+
+// メソッドチェーンを使った例
+st.check()
+  .With(st.is.Mobile()) // モバイルからのアクセスかチェック
+  .With(st.isLang('ja')) // ブラウザの言語が日本語の時のみ
+  .With(st.at.HoursBetween(9, 19)) // 9 ~ 19時の間
+  .Done(function(){
+    console.log(" we are OPEN !!")
+  });
+
+```
+
+** practical example **
+```js
+/* selftimer.js */
+
+function businessHours(isTrue, isFalse) {
+
+  var st = new SelfTimer();
+
+  var $in = st.in();
+  var $on = st.on();
+  var $is = st.is();
+  var $at = st.at();
+  var $check = st.check();
+
+  var detect = $check
+                 .With($on.Weekdays())
+                 .With($at.HoursBetween(9, 19))
+                 // 実行日が下記の日付の場合は falseを返す
+                 .With(! $on.DatesContain(
+                   ['2017-01-01', '2017-01-02', '2017-01-03']
+                 ))
+                 .Done();
+
+  return detect === true ? isTrue() : isFalse() ;
+
+} // ! businessHours()
+
+var log = console.log;
+
+businessHours(
+  function () {
+    return log("YES!!. curret time is business hours")
+          },
+  function () {
+    return log("NO!!. curret time is NOT business hours")
+          });
 ```

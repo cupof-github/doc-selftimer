@@ -1,4 +1,4 @@
-# self-timer.js <small>1.5.3</small>
+# self-timer.js <small>1.6.1</small>
 
 ![logo](_assets/img/logo.png)
 
@@ -1750,4 +1750,94 @@ st.timer()
   .then(function() {
     console.log("run, after 2 minutes");
   });
+```
+
+## With( val )
+
+> `With` method is detect value if `true or false` in `argument` variable.
+
+!>  `Done` method not available in **promise** version
+
+- group : `.check()`
+- argument : `val` [ Bool ]
+- return : `this`
+- NOTE: **added since v1.6.0**
+
+
+## Done( task )
+
+> `Done` method is return bool or callback after determine a value within `With` method.
+
+
+!>  `Done` method not available in **promise** version
+
+- group : `.check()`
+- argument : `callback` [ Function ]
+- return : `Function` || `Bool`
+- NOTE: **added since v1.6.0**
+
+** basic example **
+```js
+var st = new SelfTimer(new Date());
+
+// basic example.
+st.check()
+  .With(st.on.WeekDay()) // checking today is weekday
+  .Done(); /// true || false
+
+// call back example
+st.check()
+  .With(! st.on.WeekDay()) // check if today is not weekday
+  .Done(function() {
+    console.log('today is not weekday')
+  });
+
+// mthods chain example
+st.check()
+  .With(st.is.Mobile()) // check if accessed from mobile
+  .With(st.isLang('en')) // allowed just lang of 'en' in client's browser
+  .With(st.at.HoursBetween(9, 19)) // between 09 to 19 of time
+  .Done(function(){
+    console.log(" we are OPEN !!")
+  });
+
+```
+
+** practical example **
+```js
+/* selftimer.js */
+
+function businessHours(isTrue, isFalse) {
+
+  var st = new SelfTimer();
+
+  // assing self-timer's methods to values
+  var $in = st.in();
+  var $on = st.on();
+  var $is = st.is();
+  var $at = st.at();
+  var $check = st.check();
+
+  var detect = $check
+                 .With($on.Weekdays())
+                 .With($at.HoursBetween(9, 19))
+                 // excludes below dates
+                 .With(! $on.DatesContain(
+                   ['2017-01-01', '2017-01-02', '2017-01-03']
+                 ))
+                 .Done();
+
+  return detect === true ? isTrue() : isFalse() ;
+
+} // ! businessHours()
+
+var log = console.log;
+
+businessHours(
+  function () {
+    return log("YES!!. curret time is business hours")
+          },
+  function () {
+    return log("NO!!. curret time is NOT business hours")
+          });
 ```
